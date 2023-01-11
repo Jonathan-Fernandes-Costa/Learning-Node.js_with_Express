@@ -8,7 +8,6 @@ const livroSchema = new mongoose.Schema(
         editora: {type: String, required: true},
         numpags: {type: Number}
     }
-
 )
 const livros = mongoose.model('livros', livroSchema)
 export default livros

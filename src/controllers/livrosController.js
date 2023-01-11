@@ -27,7 +27,6 @@ class LivroController {
         })
         
     }
-
     static atualizarLivro = (req, res) => {
         const id = req.params.id;
         livros.findByIdAndUpdate(id, {$set: req.body}, (err) => {
