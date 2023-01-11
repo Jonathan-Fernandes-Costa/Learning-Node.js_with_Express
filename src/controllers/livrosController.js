@@ -6,7 +6,16 @@ class LivroController {
             res.status(200).json(livros)
         })
     }
-
+    static listarLivroid = (req, res) => {
+        const id = req.params.id
+        livros.findById(id, (err, livros) => {
+            if(err){
+                res.status(404).send({message: `${err.message} - Livro não encontrado`})
+            }else{
+                res.status(200).send(livros)
+            }
+        })
+    }
     static cadastrarLivro = (req, res) => {
         let livro = new livros(req.body);//Criando o livro
         livro.save((err) => {//salvando no Banco de dados
@@ -26,6 +35,16 @@ class LivroController {
                 res.status(500).send({message: `${err.message} - falha ao atualizar livro`})
             }else{
                 res.status(200).send("Livro atualizado")
+            }
+        })
+    }
+    static deletarLivro = (req, res) => {
+        const id = req.params.id;
+        livros.findByIdAndDelete(id, (err) => {
+            if(err){
+                res.status(500).send({message: `${err.message} - falha ao deletar o livro`})
+            }else{
+                res.status(200).send("Livro Deletado")
             }
         })
     }

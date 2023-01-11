@@ -11,19 +11,4 @@ app.use(express.json())
 //CRUD
 //Acessar dado
 routes(app)
-app.get('/livros/:id', (req, res) =>{
-    let {id} = req.params;
-    let index = Buscalivro(id)
-    res.status(200).json(livros[index])
-})
-//Apagando dados
-app.delete('/livros/:id', (req, res) =>{
-    let {id} = req.params;
-    let index = Buscalivro(id)
-    livros.splice(index, 1)
-    res.send(`Livro ${id} apagado`)
-})
-function Buscalivro(id){
-    return livros.findIndex(livro => livro.id == id)
-}
 export default app
