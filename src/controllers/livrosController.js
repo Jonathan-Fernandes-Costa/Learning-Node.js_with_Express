@@ -2,19 +2,28 @@ import livros from "../models/Livro.js"
 
 class LivroController {
     static listarLivros = (req, res) => {
-        livros.find((err, livros) => {
+        livros.find()
+            .populate("autor")//Associando dados entre Schema, nessa linha estou populando o campo autor
+            .populate("editora")
+            .exec((err, livros) => {//Execute tal codigo
             res.status(200).json(livros)
         })
+        
     }
     static listarLivroid = (req, res) => {
         const id = req.params.id
-        livros.findById(id, (err, livros) => {
+        livros.findById(id)
+            .populate("autor", "nome")//Nessa linha estou populando o campo autor e dizendo que quero receber apenas o nome
+            .populate("editora")
+            .exec((err, livros) => {
             if(err){
                 res.status(404).send({message: `${err.message} - Livro não encontrado`})
             }else{
                 res.status(200).send(livros)
             }
         })
+        
+        
     }
     static cadastrarLivro = (req, res) => {
         let livro = new livros(req.body);//Criando o livro
