@@ -4,6 +4,7 @@ import LivroController from "../controllers/livrosController.js";
 const router = express.Router();
 router
     .get("/livros", LivroController.listarLivros)
+    .get("/livros/busca", LivroController.listarLivroTitulo)//Tem que ser na ordem do mais especifico para o menos especifico
     .get("/livros/:id", LivroController.listarLivroid)
     .post("/livros", LivroController.cadastrarLivro)
     .put("/livros/:id", LivroController.atualizarLivro)
