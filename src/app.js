@@ -16,15 +16,6 @@ app.get('/livros/:id', (req, res) =>{
     let index = Buscalivro(id)
     res.status(200).json(livros[index])
 })
-//Adicionar Dados
-
-//Atualizar dados
-app.put('/livros/:id', (req, res) =>{
-    let {id} = req.params;
-    let index = Buscalivro(id)
-    livros[index].titulo = req.body.titulo
-    res.json(livros)
-})
 //Apagando dados
 app.delete('/livros/:id', (req, res) =>{
     let {id} = req.params;
